@@ -1,29 +1,36 @@
-Blog Application Backend
-This project is a backend for a blog application developed using Spring Boot. It incorporates Spring Security for authentication and authorization, utilizing JWT (JSON Web Tokens) for secure, stateless authentication. The application supports role-based access control, distinguishing between roles like ADMIN and USER. It connects to a MySQL database by default but can also be configured to use an H2 in-memory database for development and testing purposes.
+# Blog Application Backend
 
-Features
-RESTful API for managing blog posts, comments, and users.
-Secure user authentication using JWT.
-Role-based access control.
-Connection to MySQL and optional H2 database for easy testing.
-Comprehensive error handling and validation.
-Prerequisites
+This project is a backend for a blog application developed using Spring Boot. It incorporates Spring Security for authentication and authorization, utilizing JWT (JSON Web Tokens) for secure, stateless authentication. The application supports role-based access control, distinguishing between roles like `ADMIN` and `USER`. It connects to a MySQL database by default but can also be configured to use an H2 in-memory database for development and testing purposes.
+
+## Features
+
+- RESTful API for managing blog posts, comments, and users.
+- Secure user authentication using JWT.
+- Role-based access control.
+- Connection to MySQL and optional H2 database for easy testing.
+- Comprehensive error handling and validation.
+
+## Prerequisites
+
 Before you can run this project, you will need:
 
-Java JDK 11 or later
-Maven 3.6 or later
-MySQL Server (Optional for production)
-Configuration
-Database Setup
-MySQL
-Install MySQL and start the MySQL service.
-Create a database for the application:
-sql
-Copy code
-CREATE DATABASE blog_app;
+- Java JDK 11 or later
+- Maven 3.6 or later
+- MySQL Server (Optional for production)
+
+## Configuration
+
+### Database Setup
+
+#### MySQL
+
+1. Install MySQL and start the MySQL service.
+2. Create a database for the application:
+
+   ```sql
+   CREATE DATABASE blog_app;
 Update src/main/resources/application.properties for MySQL:
 properties
-Copy code
 spring.datasource.url=jdbc:mysql://localhost:3306/blog_app
 spring.datasource.username=your_mysql_username
 spring.datasource.password=your_mysql_password
