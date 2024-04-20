@@ -1,6 +1,6 @@
 # Blog Application Backend
 
-This project is a backend for a blog application developed using Spring Boot. It incorporates Spring Security for authentication and authorization, utilizing JWT (JSON Web Tokens) for secure, stateless authentication. The application supports role-based access control, distinguishing between roles like `ADMIN` and `USER`. It connects to a MySQL database by default but can also be configured to use an H2 in-memory database for development and testing purposes.
+This project is a backend for a blog application developed using Spring Boot. It incorporates Spring Security for authentication and authorization, utilizing JWT (JSON Web Tokens) for secure, stateless authentication. The application supports role-based access control, distinguishing between roles like `ADMIN`, `MODERATOR` and `USER`. It connects to a MySQL database by default but can also be configured to use an H2 in-memory database for development and testing purposes.
 
 ## Features
 
@@ -29,36 +29,56 @@ Before you can run this project, you will need:
 
    ```sql
    CREATE DATABASE blog_app;
-Update src/main/resources/application.properties for MySQL:
-properties
-spring.datasource.url=jdbc:mysql://localhost:3306/blog_app
-spring.datasource.username=your_mysql_username
-spring.datasource.password=your_mysql_password
-H2 Database
-The application is configured to use H2 in development. You can access the H2 console at http://localhost:8080/h2-console with the JDBC URL set to jdbc:h2:mem:testdb.
+   ```
 
-JWT Configuration
-Set your JWT secret and expiration time in src/main/resources/application.properties:
+3. Update `src/main/resources/application.properties` for MySQL:
 
-properties
-Copy code
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/blog_app
+   spring.datasource.username=your_mysql_username
+   spring.datasource.password=your_mysql_password
+   ```
+
+#### H2 Database
+
+The application is configured to use MySQL in development. 
+But H2 databases can also be easily implemented, you can access the H2 console at `http://localhost:8080/h2-console` with the JDBC URL set to `jdbc:h2:mem:testdb`.
+
+### JWT Configuration
+
+Set your JWT secret and expiration time in `src/main/resources/application.properties`:
+
+```properties
 app.jwt.secret=your_secret_key
 app.jwt.expiration-ms=86400000  # 24 hours
-Running the Application
+```
+
+## Running the Application
+
 To run the application, use the following command from the root directory of the project:
 
-bash
-Copy code
+```bash
 mvn spring-boot:run
-API Endpoints
+```
+
+## API Endpoints
+
 The following are the main endpoints provided by the blog application:
 
-Auth
-POST /api/auth/signup - Register a new user.
-POST /api/auth/login - Authenticate a user and return a JWT.
-Posts
-POST /api/home/posts - Create a new blog post (Admin and User).
-GET /api/home/posts - Retrieve all posts.
+### Auth
 
-Security
-This application uses Spring Security to handle authentication and authorization. The security configuration is set up in com.example.blog.security.SecurityConfig. The configuration includes JWT authentication filter, which intercepts and processes the authentication token.
+- `POST /api/auth/signup` - Register a new user.
+- `POST /api/auth/login` - Authenticate a user and return a JWT.
+
+
+### Posts
+
+- `POST /api/home/posts` - Create a new blog post (Admin and User).
+- `GET /api/home/posts` - Retrieve all posts.
+
+## Security
+
+This application uses Spring Security to handle authentication and authorization. The security configuration is set up in `com.example.blog.security.SecurityConfig`. The configuration includes JWT authentication filter, which intercepts and processes the authentication token.
+
+
+
